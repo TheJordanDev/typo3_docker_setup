@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  web:
+    image: typo3_setup:1.0
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - typo3-sources:/var/www/typo3
+      - ./html:/var/www/html
+    networks:
+      - typo3-network
+    environment:
+      TYPO3_VERSION: "11.5"
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dev_typocity
+      MYSQL_USER: B4RjRVztcWFF
+      MYSQL_PASSWORD: 'EcdzIScS40SlKegG4OGW1f7g'
+    volumes:
+      - typo3-mysql:/var/lib/mysql
+      - ./sql/:/docker-entrypoint-initdb.d
+    networks:
+      - typo3-network
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis:latest
+    networks:
+      - typo3-network
+
+volumes:
+  typo3-mysql:
+  typo3-sources:
+
+networks:
+  typo3-network:
