@@ -12,7 +12,8 @@ services:
       - typo3-sources:/var/www/typo3
       - ./html:/var/www/html
     networks:
-      - typo3-network
+      typo3-network:
+        ipv4_address: 10.5.0.5
     environment:
       TYPO3_VERSION: "11.5"
   db:
@@ -26,14 +27,16 @@ services:
       - typo3-mysql:/var/lib/mysql
       - ./sql/:/docker-entrypoint-initdb.d
     networks:
-      - typo3-network
+      typo3-network:
+        ipv4_address: 10.5.0.6
     ports:
       - "3306:3306"
 
   redis:
     image: redis:latest
     networks:
-      - typo3-network
+      typo3-network:
+        ipv4_address: 10.5.0.7
 
 volumes:
   typo3-mysql:
@@ -41,3 +44,8 @@ volumes:
 
 networks:
   typo3-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
