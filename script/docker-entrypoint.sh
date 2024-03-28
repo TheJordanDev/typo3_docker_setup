@@ -3,8 +3,10 @@
 TYPO3_VERSION="$TYPO3_VERSION"
 
 if [ ! -d "/var/www/html/typo3_src" ]; then
-    git clone --branch $TYPO3_VERSION https://github.com/TYPO3/typo3.git /var/www/typo3/$TYPO3_VERSION
-    cp -r /var/www/typo3/$TYPO3_VERSION /var/www/html/typo3_src
+    git clone https://github.com/TYPO3/typo3.git /var/www/typo3/$TYPO3_VERSION
+    cd /var/www/typo3/$TYPO3_VERSION
+    git checkout tags/$TYPO3_VERSION
+    cp -r . /var/www/html/typo3_src
     cd /var/www/html/typo3_src
     composer update --no-dev
 fi
