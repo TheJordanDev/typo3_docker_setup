@@ -20,9 +20,9 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dev_typocity
-      MYSQL_USER: B4RjRVztcWFF
-      MYSQL_PASSWORD: 'EcdzIScS40SlKegG4OGW1f7g'
+      MYSQL_DATABASE: dev
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
     volumes:
       - typo3-mysql:/var/lib/mysql
       - ./sql/:/docker-entrypoint-initdb.d
