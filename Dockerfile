@@ -28,7 +28,37 @@ RUN apt-get install -y \
     xpdf
 
 # Installation Extensions PHP
-RUN apt-get install -y php7.4-{bz2,cgi,cli,common,curl,enchant,fpm,igbinary,imagick,imap,intl,json,gd,gmp,ldap,mbstring,mysql,opcache,pspell,readline,redis,soap,tidy,xmlrpc,xml,xsl,zip,memcached,uploadprogress} libapache2-mod-php7.4
+RUN apt-get install -y \
+    php7.4-bz2 \
+    php7.4-cgi \
+    php7.4-cli \
+    php7.4-common \
+    php7.4-curl \
+    php7.4-enchant \
+    php7.4-fpm \
+    php7.4-igbinary \
+    php7.4-imagick \
+    php7.4-imap \
+    php7.4-intl \
+    php7.4-json \
+    php7.4-gd \
+    php7.4-gmp \
+    php7.4-ldap \
+    php7.4-mbstring \
+    php7.4-mysql \
+    php7.4-opcache \
+    php7.4-pspell \
+    php7.4-readline \
+    php7.4-redis \
+    php7.4-soap \
+    php7.4-tidy \
+    php7.4-xmlrpc \
+    php7.4-xml \
+    php7.4-xsl \
+    php7.4-zip \
+    php7.4-memcached \
+    php7.4-uploadprogress \
+    libapache2-mod-php7.4
 # Configuration Apache2
 RUN a2dismod php7.4 mpm_itk mpm_prefork mpm_worker
 RUN a2enconf php7.4-fpm
